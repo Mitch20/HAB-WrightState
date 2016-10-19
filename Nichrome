@@ -1,0 +1,16 @@
+clear all
+
+a = arduino('COM5','UNO');
+
+configurePin(a,'D2','unset')
+configurePin(a,'D4','unset')
+
+t = timer;
+t.StartDelay = 5;
+t.TimerFcn = @(~,~)disp('Nichrome On');
+start(t)
+
+disp('On!')
+    writeDigitalPin(a,'D2',0);
+    writeDigitalPin(a,'D4',0);
+   
