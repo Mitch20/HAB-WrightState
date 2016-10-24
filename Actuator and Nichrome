@@ -1,0 +1,43 @@
+clear a
+
+%Will have to adjust which com port you are using
+a = arduino('COM4','UNO');
+configurePin(a,'D2','unset');
+%Pin 2 will be used for Nichrome
+configurePin(a,'D4','unset');
+configurePin(a,'D7','unset');
+%Pin 4 and 7 will be used for Actuator
+
+tic
+    disp('Nichrome Off')
+    writeDigitalPin(a,'D2',0);
+if (toc<6)
+    %Add the pause values up to equal what toc will be less than
+    %Nichrome will come on at the same time as the last close function
+    %True/False valuse of writeDigitalPin, might need swapped
+      %Don't know yet which value is on/off
+        %open actuator
+        disp('Valve Open')
+        writeDigitalPin(a,'D4',1);
+        writeDigitalPin(a,'D7',0);
+        pause(2)
+        %close actuator
+        disp('Valve Close')
+        writeDigitalPin(a,'D4',0);
+        writeDigitalPin(a,'D7',1);
+        pause(2)
+ %1 Cycle
+        %open actuator
+        disp('Valve Open')
+        writeDigitalPin(a,'D4',1);
+        writeDigitalPin(a,'D7',0);
+        pause(2)
+        %close actuator
+        disp('Valve Close')
+        writeDigitalPin(a,'D4',0);
+        writeDigitalPin(a,'D7',1);
+  %2 Cycles
+end
+
+    disp('Nichrome On')
+    writeDigitalPin(a,'D2',1);
