@@ -4,8 +4,8 @@ clear a
 a = arduino('COM4','UNO');
 configurePin(a,'D2','unset');
 %Pin 2 will be used for Nichrome
-configurePin(a,'D4','unset');
-configurePin(a,'D7','unset');
+configurePin(a,'D4','DigitalOutput');
+configurePin(a,'D7','DigitalOutput');
 %Pin 4 and 7 will be used for Actuator
 
 tic
